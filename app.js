@@ -10,11 +10,11 @@ var shortUrlRouter = require('./routes/short_url');
 var app = express();
 
 app.use(logger('dev'));
+app.use(cookieParser());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

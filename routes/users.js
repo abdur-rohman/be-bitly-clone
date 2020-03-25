@@ -27,17 +27,17 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const account = req.body;
-
-  const password = md5(account.password);
-  const token = jwt.sign(account.username, randomString());
-
-  account.password = password;
-  account.token = token;
-  account.createdAt = new Date();
-  account.updatedAt = new Date();
-
   try {
+    const account = req.body;
+
+    const password = md5(account.password);
+    const token = jwt.sign(account.username, randomString());
+
+    account.password = password;
+    account.token = token;
+    account.createdAt = new Date();
+    account.updatedAt = new Date();
+    
     await user.create(account);
 
     res.json({
